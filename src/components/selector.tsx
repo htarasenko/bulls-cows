@@ -7,12 +7,16 @@ interface SelectorProps {
 }
 
 export default function Selector({}: SelectorProps) {
-  const { state } = useMyContext() as any;
+  const { state, dispatch } = useMyContext() as any;
   console.log(state.colors);
   return (
     <div className="selector">
       {state.colors.map((color: Color) => (
-        <Ball key={`selector-${color}`} color={color}></Ball>
+        <Ball
+          key={`selector-${color}`}
+          color={color}
+          clickHandler={() => dispatch({ type: "SET_COLOR", payload: color })}
+        ></Ball>
       ))}
     </div>
   );

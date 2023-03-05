@@ -20,7 +20,7 @@ body{
   height: 2rem;
   border-radius: 50%;
   background-position: top left;
-  border: 1px solid #eee;
+  border: 2px solid #eee;
   display: inline-block;
 }
 
@@ -90,4 +90,12 @@ body{
   display: flex;
   flex: 1;
   /* background-color: #eee; */
+}
+
+.ball-selected{
+  border-color: lime;
+}
+
+.active-ball:hover{
+  border-color: lime;
 }

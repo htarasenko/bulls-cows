@@ -15,7 +15,11 @@ export default function Attemps() {
       {attemps.map((attemp, index) => (
         <div key={`attemp-line-${index}`} className="selector">
           <Monitor />
-          <Attemp colors={attemp} />
+          <Attemp
+            colors={attemp}
+            isActive={index === state.activePosition[0]}
+            selectedIndex={state.activePosition[1]}
+          />
         </div>
       ))}
     </>
