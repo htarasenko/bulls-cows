@@ -13,8 +13,8 @@ export default function Attemps() {
   return (
     <>
       {attemps.map((attemp, index) => (
-        <div key={`attemp-line-${index}`} className="selector">
-          <Monitor />
+        <div key={`attemp-line-${index}`} className="attemp">
+          <Monitor index={index} />
           <Attemp
             colors={attemp}
             isActive={index === state.activePosition[0]}

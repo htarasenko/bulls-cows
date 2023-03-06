@@ -20,13 +20,23 @@ export interface State {
   activePosition: number[]; // [attempIndex, colorIndex]
 }
 
+const SECRET_LENGTH = 4;
+const ATTEMPS_COUNT = 8;
+const DEFAULT_COLOR: Color = "black";
+const COLORS: Color[] = ["green", "yellow", "red", "blue", "white", "violet"];
+
+const createSecret = (): Color[] =>
+  new Array(SECRET_LENGTH)
+    .fill(DEFAULT_COLOR)
+    .map(() => COLORS[Math.floor(Math.random() * COLORS.length)]);
+
 export const initialState: State = {
   colors: ["green", "yellow", "red", "blue", "white", "violet"],
-  secret: ["green", "yellow", "red", "blue"],
+  secret: createSecret(),
   attemps: [],
-  secretLength: 4,
-  defaultColor: "black",
-  attempsCount: 8,
+  secretLength: SECRET_LENGTH,
+  defaultColor: DEFAULT_COLOR,
+  attempsCount: ATTEMPS_COUNT,
   activePosition: [7, 0],
 };
 
@@ -44,7 +54,9 @@ const getNextActive = (
 
 type Action =
   | { type: "SELECT"; payload: number }
-  | { type: "SET_COLOR"; payload: Color };
+  | { type: "SET_COLOR"; payload: Color }
+  | { type: "CHECK" }
+  | { type: "RESET" };
 
 export function reducer(state: State, action: Action) {
   switch (action.type) {
@@ -65,8 +77,6 @@ export function reducer(state: State, action: Action) {
       return newState;
     }
     case "SET_COLOR": {
-      console.log("SET_COLOR", action.payload);
-
       const [line, colomn] = state.activePosition;
       const attempIndex = getAttempIndex(line);
       if (!state.attemps[line]) {
@@ -87,6 +97,17 @@ export function reducer(state: State, action: Action) {
           getNextActive(colors, colomn, state.secretLength),
         ],
       };
+    }
+    case "CHECK": {
+      return { ...state, activePosition: [state.activePosition[0] - 1, 0] };
+    }
+    case "RESET": {
+      const secret = new Array(state.secretLength)
+        .fill(state.defaultColor)
+        .map(
+          () => state.colors[Math.floor(Math.random() * state.colors.length)]
+        );
+      return state;
     }
     default:
       return state;

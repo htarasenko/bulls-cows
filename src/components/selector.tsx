@@ -8,7 +8,6 @@ interface SelectorProps {
 
 export default function Selector({}: SelectorProps) {
   const { state, dispatch } = useMyContext() as any;
-  console.log(state.colors);
   return (
     <div className="selector">
       {state.colors.map((color: Color) => (

@@ -10,18 +10,24 @@ body{
 .App {
   width: 100vw;
   height: 100vh;
+  min-height: 600px;
+  min-width: 380px;
   display: flex;
   flex-wrap: wrap;
   background-color: #486c54;
 }
 
 .ball {
-  width: 2rem;
-  height: 2rem;
+  width: 3rem;
+  height: 3rem;
   border-radius: 50%;
   background-position: top left;
   border: 2px solid #eee;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+  justify-content: center;
+  font-weight: 900;
 }
 
 .ball-color-red{
@@ -83,6 +89,16 @@ body{
   width: 100%;
   display: flex;
   justify-content: space-evenly;
+  position: sticky;
+  bottom: 0px;
+  background-color: rgb(58, 48, 48);
+  padding-top: 0.5rem;
+}
+
+.attemp{
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .line{
@@ -98,4 +114,96 @@ body{
 
 .active-ball:hover{
   border-color: lime;
+}
+
+.disabled-text{
+  color: grey;
+}
+.enabled-text{
+  color: black;
+}
+
+.monitor-container {
+  position: relative;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.monitor-dot {
+  position: absolute;
+  width: .4rem;
+  height: .4rem;
+  background-color: #f00;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.monitor-dot-null {
+  background-color: #000;
+}
+
+.monitor-dot-bad {
+  background-color: #fff;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-style: dotted;
+  border-color: grey;
+  border-width: 0.25rem;
+}
+
+.monitor-dot-good {
+  background-color: #000;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-style: dotted;
+  border-color: grey;
+  border-width: 0.25rem;
+}
+
+.monitor-dot:nth-child(5) {
+  top: 50%;
+  left: 50%;
+}
+
+.monitor-dot:nth-child(2) {
+  top: 0;
+  left: 50%;
+}
+
+.monitor-dot:nth-child(3) {
+  top: 100%;
+  left: 50%;
+}
+
+.monitor-dot:nth-child(4) {
+  top: 50%;
+  left: 0;
+}
+
+.monitor-dot:nth-child(1) {
+  top: 50%;
+  left: 100%;
+}
+
+.monitor-dot:nth-child(6) {
+  top: 25%;
+  left: 25%;
+}
+
+.monitor-dot:nth-child(7) {
+  top: 75%;
+  left: 75%;
+}
+
+.monitor-dot:nth-child(8) {
+  top: 25%;
+  left: 75%;
+}
+
+.monitor-dot:nth-child(9) {
+  top: 75%;
+  left: 25%;
 }
